@@ -14,7 +14,7 @@ export default function Form() {
   const [formData, setFormData] = useState([]);
   const [formTypes, setFormTypes] = useState([]);
   const [selectedType, setSelectedType] = useState("category");
-  const [token, setToken] = useState("");
+
 
   useEffect(() => {
     const fetchFormData = async () => {
@@ -24,7 +24,7 @@ export default function Form() {
           .find((row) => row.startsWith("token="))
           ?.split("=")[1];
 
-        setToken(cookieToken);
+        
         if (!cookieToken) {
           navigate("/");
           return;
@@ -121,7 +121,7 @@ export default function Form() {
       });
 
       if (response.ok) {
-        const result = await response.json();
+        
         navigate("/forms");
       } else {
         console.error("Request failed");

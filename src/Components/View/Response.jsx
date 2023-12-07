@@ -4,11 +4,13 @@ import ClozeResponse from "./ClozeResponse/ClozeResponse";
 import ComprehensiveResponse from "./ComprehensiveResponse/ComprehensiveResponse";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import { TouchBackend } from 'react-dnd-touch-backend';
 import { useNavigate, useParams } from "react-router-dom";
+const isTouchDevice = () => 'ontouchstart' in window;
 export default function Response() {
   const navigate = useNavigate();
   const { formId } = useParams();
-
+ 
   const [formData, setFormData] = useState([]);
   const [note, setnote] = useState("");
   const [title, setTitle] = useState("");
@@ -84,7 +86,7 @@ export default function Response() {
       console.error("Error during fetch:", error);
     }
   };
-
+  const backend = isTouchDevice() ? TouchBackend : HTML5Backend;
   const addResponseData = (index, newData, formType) => {
     setResponseData((prevResponse) => {
       const updatedResponse = [...prevResponse];
@@ -159,7 +161,7 @@ export default function Response() {
       </div>
       {formData.map((formItem, index) => (
         <div className="w-full lg:w-4/6 " key={index}>
-          <DndProvider backend={HTML5Backend}>
+         <DndProvider backend={backend}>
             <div className=""> {renderFormItem(formItem, index)}</div>
           </DndProvider>
         </div>
