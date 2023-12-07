@@ -111,7 +111,7 @@ export default function Form() {
         .split("; ")
         .find((row) => row.startsWith("token="))
         ?.split("=")[1];
-      const response = await fetch(`http://localhost:4000${endpoint}`, {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}${endpoint}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
