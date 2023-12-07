@@ -106,7 +106,7 @@ export default function Form() {
   const submitForm = async (e) => {
     e.preventDefault();
     try {
-      const endpoint = formId ? `/updateFormData/${formId}` : "/addFormData";
+      const endpoint = formId ? `updateFormData/${formId}` : "addFormData";
       const cookieToken = document.cookie
         .split("; ")
         .find((row) => row.startsWith("token="))
