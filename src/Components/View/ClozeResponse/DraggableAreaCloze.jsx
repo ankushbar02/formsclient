@@ -19,11 +19,11 @@ const DroppableAreaCloze = ({ type, areaId, onDropItem, onRemoveItem }) => {
 
     onRemoveItem(areaId);
   };
-  const isTouchDevice = () => "ontouchstart" in window;
+ 
   return (
     <div
       ref={drop}
-      className="w-28 h-12 p-2 mx-2 flex flex-col items-center justify-center object-fill  rounded "
+      className=" h-12 w-full flex flex-col items-center justify-center object-fill  rounded "
     >
       {droppedItem && (
         <div
@@ -35,11 +35,11 @@ const DroppableAreaCloze = ({ type, areaId, onDropItem, onRemoveItem }) => {
         >
           <div className="flex justify-center">
             <p className=" ">{droppedItem.name} </p>
-            {isTouchDevice() && (
+            
               <span onClick={removeItem} className="material-symbols-outlined ">
                 close
               </span>
-            )}
+            
           </div>
         </div>
       )}

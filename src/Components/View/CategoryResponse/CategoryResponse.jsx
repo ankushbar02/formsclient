@@ -18,19 +18,12 @@ const CategoryResponse = (props) => {
       items: items.map((area, id) => ({
         id: id,
         name: area.name,
-        items: Array.isArray(area.items)
-          ? area.items.filter((item, index, self) =>
-              index === self.findIndex((t) => t.name === item.name)
-            )
-          : [],
-      }))
-      
-      
+        items: area.items,
+      })),
     };
     props.onUpdateNote(update);
   }, [items]);
 
-  
   const handleDropItem = (itemnew, areaId) => {
     console.log(itemnew);
     setItems((prevAreas) =>
@@ -39,17 +32,16 @@ const CategoryResponse = (props) => {
           ? {
               ...item,
               items: item.items.some((ele) => ele.name === itemnew.name)
-                ? item.items // Don't add if itemnew is already present
+                ? item.items
                 : [...item.items, itemnew],
             }
           : item
       )
     );
   };
-  
+
   console.log(items);
   const handleRemoveItem = (removedItem, areaId) => {
-    
     setItems((prevAreas) =>
       prevAreas.map((area) =>
         area.id === areaId
@@ -81,7 +73,7 @@ const CategoryResponse = (props) => {
                 key={item.id}
                 name={item.name}
                 type="ITEM"
-                onDragEnd={() => handleDropItem(item, 0)} 
+                onDragEnd={() => handleDropItem(item, 0)}
               />
             ))}
           </div>
@@ -90,9 +82,12 @@ const CategoryResponse = (props) => {
 
       <section className="p-2 ">
         <h4 className="p-2">Items</h4>
-        <div className="flex sm:justify-center flex-wrap">
+        <div className="flex justify-center    ">
           {items.map((area) => (
-            <div className="border text-center bg-[#5eead4] " key={area.id}>
+            <div
+              className=" w-48   border text-center bg-[#5eead4] "
+              key={area.id}
+            >
               <h2>{area.name}</h2>
 
               <DroppableArea

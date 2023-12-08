@@ -81,7 +81,7 @@ const ClozeResponse = (props) => {
             <React.Fragment key={index}>
               {index > 0 && (
                 <div
-                  className="  flex flex-col justify-center items-center border rounded bg-[#fcd34d]"
+                  className=" w-36 flex flex-col justify-center items-center border rounded bg-[#fcd34d]"
                   key={`area-${index}`}
                 >
                   <h2>Blank {index}</h2>

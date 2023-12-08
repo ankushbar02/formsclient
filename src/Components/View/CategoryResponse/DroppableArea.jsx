@@ -8,20 +8,17 @@ const DroppableArea = ({ type, areaId, onDropItem, onRemoveItem }) => {
     accept: type,
     drop: (item, monitor) => {
       const newItem = { id: Date.now(), name: item.name };
-    
-   
-      const isDuplicate = droppedItems.some((existingItem) => existingItem.name === newItem.name);
-    
+
+      const isDuplicate = droppedItems.some(
+        (existingItem) => existingItem.name === newItem.name
+      );
+
       if (!isDuplicate) {
         setDroppedItems((prevItems) => [...prevItems, newItem]);
         onDropItem(newItem, areaId);
       }
     },
-    
   });
-  const isTouchDevice = () => 'ontouchstart' in window;
-  
-
 
   const removeItem = (itemId) => {
     const index = droppedItems.findIndex((item) => item.id === itemId);
@@ -42,14 +39,10 @@ const DroppableArea = ({ type, areaId, onDropItem, onRemoveItem }) => {
     <div
       ref={drop}
       style={{
-        
-       
-       
-        minWidth:"100px",
-        width: "fit-content",
-        minHeight:"60px",
+        minHeight: "100px",
         height: "max-content",
       }}
+      className="sm:px-3"
     >
       {droppedItems.map((item) => (
         <div
@@ -58,11 +51,17 @@ const DroppableArea = ({ type, areaId, onDropItem, onRemoveItem }) => {
           style={{
             cursor: "move",
           }}
-          className="border flex justify-center bg-[#8b5cf6] py-2  text-center rounded-full  m-2"
-       
+          className="border w-36 h-10 flex justify-around items-center p-2 bg-[#8b5cf6] py-1  text-center rounded-full  m-2"
         >
-        <div>{item.name}</div>  
-          {isTouchDevice()&& <span onClick={() => removeItem(item.id)} className="material-symbols-outlined">close</span>}
+          <div>{item.name}</div>
+          {
+            <span
+              onClick={() => removeItem(item.id)}
+              className="material-symbols-outlined"
+            >
+              close
+            </span>
+          }
         </div>
       ))}
     </div>
