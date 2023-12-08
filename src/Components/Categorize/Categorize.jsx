@@ -115,14 +115,14 @@ export default function Categorize(props) {
           {categories.map((ele, id) => (
             <div
               key={id}
-              className="flex p-1"
+              className="flex p-1 "
               draggable
               onDragStart={(e) => (dragItem.current = id)}
               onDragEnter={(e) => (dragOverItem.current = id)}
               onDragEnd={handleSortCategory}
               onDragOver={(e) => e.preventDefault()}
             >
-              <span className="material-symbols-outlined">drag_indicator</span>
+              <span className="material-symbols-outlined cursor-move">drag_indicator</span>
               <input
                 placeholder="New Category"
                 value={ele}
@@ -148,7 +148,7 @@ export default function Categorize(props) {
           ))}
 
           <div className="flex p-1">
-            <span className="material-symbols-outlined">drag_indicator</span>
+            <span className="material-symbols-outlined ">drag_indicator</span>
             <input
               placeholder="New Category"
               type="text"
@@ -180,7 +180,7 @@ export default function Categorize(props) {
                 onDragOver={(e) => e.preventDefault()}
               >
                 <div className="flex">
-                  <span className="material-symbols-outlined">
+                  <span className="material-symbols-outlined cursor-move">
                     drag_indicator
                   </span>
                   <input

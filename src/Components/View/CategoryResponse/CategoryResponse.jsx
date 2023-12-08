@@ -7,7 +7,7 @@ const CategoryResponse = (props) => {
   const [items, setItems] = useState([]);
   useEffect(() => {
     setItems(
-      props.items.map((item, id) => ({ id, name: item.item, items: "" }))
+      props.items.map((item, id) => ({ id, name: item.item, items: [] }))
     );
     setCategories(props.categories.map((items, id) => ({ id, name: items })));
   }, []);
@@ -31,14 +31,23 @@ const CategoryResponse = (props) => {
   }, [items]);
 
   
-  const handleDropItem = (item, areaId) => {
+  const handleDropItem = (itemnew, areaId) => {
+    console.log(itemnew);
     setItems((prevAreas) =>
-      prevAreas.map((area) =>
-        area.id === areaId ? { ...area, items: [...area.items, item] } : area
+      prevAreas.map((item) =>
+        item.id === areaId
+          ? {
+              ...item,
+              items: item.items.some((ele) => ele.name === itemnew.name)
+                ? item.items // Don't add if itemnew is already present
+                : [...item.items, itemnew],
+            }
+          : item
       )
     );
   };
   
+  console.log(items);
   const handleRemoveItem = (removedItem, areaId) => {
     
     setItems((prevAreas) =>

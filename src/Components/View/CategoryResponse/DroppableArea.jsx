@@ -8,12 +8,20 @@ const DroppableArea = ({ type, areaId, onDropItem, onRemoveItem }) => {
     accept: type,
     drop: (item, monitor) => {
       const newItem = { id: Date.now(), name: item.name };
-
-      setDroppedItems((prevItems) => [...prevItems, newItem]);
-
-      onDropItem(newItem, areaId);
+    
+   
+      const isDuplicate = droppedItems.some((existingItem) => existingItem.name === newItem.name);
+    
+      if (!isDuplicate) {
+        setDroppedItems((prevItems) => [...prevItems, newItem]);
+        onDropItem(newItem, areaId);
+      }
     },
+    
   });
+  const isTouchDevice = () => 'ontouchstart' in window;
+  
+
 
   const removeItem = (itemId) => {
     const index = droppedItems.findIndex((item) => item.id === itemId);
@@ -50,10 +58,11 @@ const DroppableArea = ({ type, areaId, onDropItem, onRemoveItem }) => {
           style={{
             cursor: "move",
           }}
-          className="border bg-[#8b5cf6] py-2  text-center rounded-full  m-2"
+          className="border flex justify-center bg-[#8b5cf6] py-2  text-center rounded-full  m-2"
        
         >
-          {item.name}
+        <div>{item.name}</div>  
+          {isTouchDevice()&& <span onClick={() => removeItem(item.id)} className="material-symbols-outlined">close</span>}
         </div>
       ))}
     </div>

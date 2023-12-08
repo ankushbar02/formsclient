@@ -107,7 +107,7 @@ export default function Cloze(props) {
         options.map((ele, id) => (
           <div
             key={id}
-            className="flex mb-2"
+            className="flex mb-2 cursor-move"
             draggable
             onDragStart={(e) => (dragItem.current = id)}
             onDragEnter={(e) => (dragOverItem.current = id)}

@@ -155,7 +155,7 @@ export default function Comprehension(props) {
       {questions.map((mcq, questionIndex) => (
         <div
           key={questionIndex}
-          className="p-5 border rounded-md w-full"
+          className="p-5 border rounded-md w-full "
           draggable
           onDragStart={(e) => (dragItem.current = questionIndex)}
           onDragEnter={(e) => (dragOverItem.current = questionIndex)}
@@ -164,7 +164,7 @@ export default function Comprehension(props) {
         >
           <section className="question p-2">
             <div className="flex justify-between pb-2">
-              <div className="flex">
+              <div className="flex cursor-move">
                 <span className="material-symbols-outlined">
                   drag_indicator
                 </span>
@@ -198,7 +198,7 @@ export default function Comprehension(props) {
             {mcq.options.map((option, optionIndex) => (
               <div
                 key={optionIndex}
-                className="flex p-1"
+                className="flex p-1 cursor-move"
                 draggable
                 onDragStart={(e) => {
                   e.dataTransfer.setData(
