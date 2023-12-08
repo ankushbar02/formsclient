@@ -82,7 +82,7 @@ const CategoryResponse = (props) => {
 
       <section className="p-2 ">
         <h4 className="p-2">Items</h4>
-        <div className="flex justify-center    ">
+        <div className="flex justify-center flex-wrap   ">
           {items.map((area) => (
             <div
               className=" w-48   border text-center bg-[#5eead4] "
