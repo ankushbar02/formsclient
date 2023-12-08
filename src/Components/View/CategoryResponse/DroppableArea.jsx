@@ -42,7 +42,7 @@ const DroppableArea = ({ type, areaId, onDropItem, onRemoveItem }) => {
         minHeight: "100px",
         height: "max-content",
       }}
-      className="sm:px-3"
+      className="px-3 flex flex-col items-center justify-center"
     >
       {droppedItems.map((item) => (
         <div
