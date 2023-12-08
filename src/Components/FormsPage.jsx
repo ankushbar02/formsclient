@@ -6,7 +6,7 @@ const FormsPage = () => {
   const navigate = useNavigate();
   const [forms, setForms] = useState([]);
   const [token, setToken] = useState("");
-
+  const [user, setuser] = useState("")
   useEffect(() => {
    
     const fetchForms = async () => {
@@ -35,6 +35,7 @@ const FormsPage = () => {
         if (response.ok) {
           const formsData = await response.json();
           setForms(formsData.forms);
+          setuser(formsData.name)
         } else {
         
           console.error("Request failed");
@@ -106,7 +107,7 @@ const FormsPage = () => {
     <div className="p-5">
       <div className="flex  justify-between">
         <div>
-          <h1 className="text-2xl font-bold mb-5">Your Forms</h1>
+          <h1 className="text-2xl font-bold mb-5">Hi {user}, Your Forms</h1>
           <button
             onClick={handleCreateForm}
             className="bg-green-500 text-white px-4 py-2 rounded-md mb-4 hover:bg-green-600"

@@ -14,7 +14,7 @@ const Login = () => {
       ?.split("=")[1];
 
     if (cookieToken) {
-      console.error("User not authenticated");
+      console.error("User authenticated");
       navigate("/forms");
       return;
     }
